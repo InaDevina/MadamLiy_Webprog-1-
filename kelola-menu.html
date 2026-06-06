@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kelola Menu - Madam Liy</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="kelola-menu.css"/>
+</head>
+<body class="bg-gray-50 font-sans">
+
+  <!-- Sidebar Overlay -->
+  <div id="sidebar-overlay" class="fixed inset-0 bg-black/40 z-20 hidden lg:hidden" onclick="closeSidebar()"></div>
+
+  <!-- SIDEBAR -->
+  <aside id="sidebar" class="fixed top-0 left-0 h-full w-64 bg-white shadow-xl z-30 flex flex-col transform -translate-x-full lg:translate-x-0 transition-transform duration-300">
+    <div class="flex items-center gap-3 px-5 py-5 border-b border-gray-100">
+      <div class="w-10 h-10 bg-green-500 rounded-xl flex items-center justify-center"><span class="text-white text-lg">🍽️</span></div>
+      <div><p class="font-bold text-gray-800 text-sm">Madam Liy</p><p class="text-xs text-gray-400">UC Walk</p></div>
+    </div>
+    <nav class="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
+      <a href="dashboard.html"     class="nav-link flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-50"><span>📊</span> Dashboard</a>
+      <a href="kelola-menu.html"   class="nav-link active flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium"><span>📋</span> Kelola Menu</a>
+      <a href="kitchen-queue.html" class="nav-link flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-50"><span>🍳</span> Kitchen Queue</a>
+      <a href="list-karyawan.html" class="nav-link flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-50"><span>👥</span> List Karyawan</a>
+      <a href="edit-profile.html"  class="nav-link flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-50"><span>👤</span> Edit Profile</a>
+    </nav>
+    <div class="p-4 border-t border-gray-100">
+      <p class="text-xs text-gray-400">Logged in as</p>
+      <p class="font-bold text-sm text-gray-700">Admin User</p>
+      <p class="text-xs text-green-500 mb-3">Role: Admin</p>
+      <button class="w-full bg-red-500 hover:bg-red-600 text-white text-sm py-2 rounded-xl font-medium transition">🚪 Logout</button>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="lg:ml-64 min-h-screen">
+    <!-- Mobile topbar -->
+    <div class="lg:hidden flex items-center justify-between px-4 py-3 bg-white shadow-sm sticky top-0 z-10">
+      <button onclick="openSidebar()" class="text-gray-600 text-2xl">☰</button>
+      <p class="font-bold text-gray-700 text-sm">Kelola Menu</p>
+      <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-xs font-bold">A</div>
+    </div>
+
+    <div class="p-4 md:p-6 lg:p-8 space-y-6">
+      <!-- Header -->
+      <div class="flex items-center justify-between fade-in">
+        <div>
+          <h1 class="text-2xl md:text-3xl font-bold text-gray-800">Kelola Menu</h1>
+          <p class="text-gray-400 text-sm mt-1">Manage restaurant menu items and pricing</p>
+        </div>
+        <button onclick="openAddModal()" class="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2.5 rounded-xl text-sm font-semibold transition shadow-lg shadow-green-200 hover:shadow-green-300">
+          <span class="text-lg">+</span> Tambah Menu Baru
+        </button>
+      </div>
+
+      <!-- Table Card -->
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden fade-in">
+        <!-- Toolbar -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 px-5 py-4 border-b border-gray-100">
+          <h2 class="font-bold text-gray-800">Daftar Menu</h2>
+          <div class="flex gap-2 w-full sm:w-auto">
+            <input id="menu-search" oninput="filterMenu()" placeholder="Cari menu..." class="border border-gray-200 rounded-xl px-3 py-2 text-sm outline-none focus:border-green-400 w-full sm:w-52 transition"/>
+            <select id="menu-filter" onchange="filterMenu()" class="border border-gray-200 rounded-xl px-3 py-2 text-sm outline-none focus:border-green-400 bg-white">
+              <option value="">Semua</option>
+              <option value="Makanan">Makanan</option>
+              <option value="Minuman">Minuman</option>
+            </select>
+          </div>
+        </div>
+        <!-- Table -->
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead class="bg-gray-50 text-gray-400 text-xs uppercase">
+              <tr>
+                <th class="px-5 py-3 text-left">Nama Menu</th>
+                <th class="px-5 py-3 text-left">Kategori</th>
+                <th class="px-5 py-3 text-left">Harga</th>
+                <th class="px-5 py-3 text-left hidden md:table-cell">Deskripsi</th>
+                <th class="px-5 py-3 text-left">Status</th>
+                <th class="px-5 py-3 text-left">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="menu-table" class="divide-y divide-gray-50"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- MODAL ADD/EDIT -->
+  <div id="menu-modal" class="modal-overlay fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
+    <div class="modal-box bg-white rounded-2xl shadow-2xl w-full max-w-md p-6">
+      <div class="flex items-center justify-between mb-5">
+        <h3 id="modal-title" class="font-bold text-lg text-gray-800">Tambah Menu Baru</h3>
+        <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 text-2xl leading-none">&times;</button>
+      </div>
+
+      <div class="space-y-4">
+        <div>
+          <label class="text-xs font-semibold text-gray-500 block mb-1">Nama Menu</label>
+          <input id="f-nama" class="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm outline-none focus:border-green-400 transition" placeholder="Contoh: Ayam Geprek"/>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-xs font-semibold text-gray-500 block mb-1">Kategori</label>
+            <select id="f-kategori" class="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm outline-none focus:border-green-400 bg-white">
+              <option>Makanan</option>
+              <option>Minuman</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs font-semibold text-gray-500 block mb-1">Harga (Rp)</label>
+            <input id="f-harga" type="number" class="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm outline-none focus:border-green-400 transition" placeholder="25000"/>
+          </div>
+        </div>
+        <div>
+          <label class="text-xs font-semibold text-gray-500 block mb-1">Deskripsi</label>
+          <input id="f-desc" class="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm outline-none focus:border-green-400 transition" placeholder="Deskripsi singkat menu"/>
+        </div>
+        <div>
+          <label class="text-xs font-semibold text-gray-500 block mb-1">Status</label>
+          <select id="f-status" class="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm outline-none focus:border-green-400 bg-white">
+            <option>Tersedia</option>
+            <option>Habis</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="flex gap-3 mt-6">
+        <button onclick="saveMenu()" class="flex-1 bg-green-500 hover:bg-green-600 text-white py-2.5 rounded-xl text-sm font-semibold transition">Simpan</button>
+        <button onclick="closeModal()" class="flex-1 border border-gray-200 text-gray-600 py-2.5 rounded-xl text-sm font-semibold hover:bg-gray-50 transition">Batal</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DELETE CONFIRM -->
+  <div id="delete-modal" class="modal-overlay fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
+    <div class="modal-box bg-white rounded-2xl shadow-2xl w-full max-w-sm p-6 text-center">
+      <div class="text-5xl mb-3">🗑️</div>
+      <h3 class="font-bold text-lg text-gray-800 mb-1">Hapus Menu?</h3>
+      <p class="text-sm text-gray-400 mb-6">Tindakan ini tidak bisa dibatalkan.</p>
+      <div class="flex gap-3">
+        <button onclick="confirmDelete()" class="flex-1 bg-red-500 hover:bg-red-600 text-white py-2.5 rounded-xl text-sm font-semibold transition">Hapus</button>
+        <button onclick="closeDeleteModal()" class="flex-1 border border-gray-200 text-gray-600 py-2.5 rounded-xl text-sm font-semibold hover:bg-gray-50 transition">Batal</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="kelola-menu.js"></script>
+</body>
+</html>

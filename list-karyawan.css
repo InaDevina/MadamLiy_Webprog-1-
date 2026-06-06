@@ -1,0 +1,31 @@
+/* ========== list-karyawan.css ========== */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+body { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+.fade-in { opacity:0; transform:translateY(24px); transition:opacity .6s ease, transform .6s ease; }
+.fade-in.visible { opacity:1; transform:translateY(0); }
+
+.nav-link.active { background:#22c55e; color:white; }
+
+tbody tr { transition: background .15s; }
+tbody tr:hover { background: #f0fdf4; }
+
+.modal-overlay { animation: fadeO .2s ease; }
+@keyframes fadeO { from{opacity:0}to{opacity:1} }
+.modal-box { animation: slideUp .25s ease; }
+@keyframes slideUp { from{opacity:0;transform:translateY(20px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)} }
+
+.badge-aktif    { background:#dcfce7; color:#15803d; }
+.badge-nonaktif { background:#fee2e2; color:#dc2626; }
+.badge-cashier  { background:#dbeafe; color:#1d4ed8; }
+.badge-chef     { background:#fef9c3; color:#b45309; }
+.badge-other    { background:#f3e8ff; color:#6b21a8; }
+
+/* Avatar colors */
+.av-0 { background:#22c55e; }
+.av-1 { background:#3b82f6; }
+.av-2 { background:#f59e0b; }
+.av-3 { background:#ef4444; }
+.av-4 { background:#8b5cf6; }
+.av-5 { background:#ec4899; }
