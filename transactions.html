@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>POS Cashier</title>
+  <link rel="stylesheet" href="/styles/transactions.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+  <div class="bg-glow glow-3"></div>
+
+  <div class="container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <div class="sidebar-top">
+
+        <div class="logo">
+          <div class="logo-icon">
+            <i class="fas fa-utensils"></i>
+          </div>
+
+          <div>
+            <h2>Madam Liy</h2>
+            <span>UC Walk</span>
+          </div>
+        </div>
+
+        <div class="menu">
+
+          <a href="transactions.html" class="menu-item active">
+            <i class="fas fa-cart-shopping"></i>
+            Sistem Kasir
+          </a>
+
+          <a href="list_order.html" class="menu-item">
+            <i class="fas fa-file-lines"></i>
+            List Order
+          </a>
+
+        </div>
+
+      </div>
+
+      <div class="sidebar-bottom">
+
+        <div class="user-card">
+          <small>Logged in as</small>
+          <h4>ina</h4>
+          <div class="role">Role: Cashier</div>
+        </div>
+
+        <button class="logout">
+          <i class="fas fa-sign-out-alt"></i>
+          Logout
+        </button>
+
+      </div>
+
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+
+      <h1 class="page-title">Point of Sale (Cashier)</h1>
+      <div class="page-subtitle">
+        Process orders and manage transactions
+      </div>
+
+      <div class="content">
+
+        <div class="left-content">
+
+          <div class="section-title">
+            🍱 Makanan (Food)
+          </div>
+
+          <div class="product-grid">
+
+            <div class="card">
+              <img src="ayam-geprek.jpg">
+              <h4 class="product-name">Ayam Geprek</h4>
+              <div class="price" data-price="25000">Rp 25.000</div>
+              <button class="add-btn">+ Add</button>
+            </div>
+
+            <div class="card">
+              <img src="ayam-goreng.jpg">
+              <h4>Ayam Goreng</h4>
+              <div class="price" data-price="22000">Rp 22,000</div>
+              <button class="add-btn">+ Add</button>
+            </div>
+
+            <div class="card">
+              <img src="bebek.jpg">
+              <h4>Bebek Goreng</h4>
+              <div class="price" data-price="35000">Rp 35,000</div>
+              <button class="add-btn">+ Add</button>
+            </div>
+
+          </div>
+
+          <div class="section-title">
+            🥤 Minuman (Drinks)
+          </div>
+
+          <div class="product-grid">
+
+            <div class="card">
+              <img src="teh-botol.jpg">
+              <h4>Teh Botol</h4>
+              <div class="price" data-price="5000">Rp 5,000</div>
+              <button class="add-btn">+ Add</button>
+            </div>
+
+            <div class="card">
+              <img src="es-teh.jpg">
+              <h4>Es Teh Manis</h4>
+              <div class="price" data-price="8000">Rp 8,000</div>
+              <button class="add-btn">+ Add</button>
+            </div>
+
+            <div class="card">
+              <img src="air.jpg">
+              <h4>Air Mineral</h4>
+              <div class="price" data-price="3000">Rp 3,000</div>
+              <button class="add-btn">+ Add</button>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- ORDER -->
+        <div class="order-panel">
+
+          <div class="order-card">
+
+            <div class="order-header">
+              Current Order
+            </div>
+
+            <div class="order-body">
+
+              <div id="empty-cart">
+
+                <i class="fa-solid fa-cart-shopping"></i>
+
+                <h3>No items yet</h3>
+
+                <p>
+                  Add menu items to start creating an order
+                </p>
+
+              </div>
+
+              <div id="cart-items"></div>
+
+              <div id="checkout-section">
+
+                <div class="summary">
+
+                  <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="subtotal">Rp 0</span>
+                  </div>
+
+                  <div class="summary-row">
+                    <span>Tax (10%)</span>
+                    <span id="tax">Rp 0</span>
+                  </div>
+
+                  <div class="summary-row">
+                    <strong>Total</strong>
+                    <div class="total" id="total">
+                      Rp 0
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="payment">
+
+                  <h4>Payment Method</h4>
+
+                  <div class="payment-grid">
+
+                    <button class="payment-btn">
+                      Cash
+                    </button>
+
+                    <button class="payment-btn">
+                      Transfer
+                    </button>
+
+                    <button class="payment-btn">
+                      QRIS
+                    </button>
+
+                  </div>
+
+                  <button class="process">
+                    Process Payment
+                  </button>
+
+                  <button class="clear">
+                    Clear Order
+                  </button>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+  <script src="/script/transactions.js"></script>
+</body>
+
+</html>
