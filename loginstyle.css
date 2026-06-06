@@ -1,0 +1,221 @@
+ * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      background: #dff3e6;
+      position: relative;
+    }
+
+    .bg-glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+    }
+
+    /* kiri atas */
+    .glow-1 {
+      width: 300px;
+      height: 300px;
+      background: #7df0a7;
+      top: -80px;
+      left: -80px;
+      opacity: .7;
+    }
+
+    /* kiri tengah */
+    .glow-2 {
+      width: 250px;
+      height: 250px;
+      background: #8ef6b5;
+      left: -100px;
+      top: 280px;
+      opacity: .5;
+    }
+
+    /* kanan atas */
+    .glow-3 {
+      width: 350px;
+      height: 350px;
+      background: #74ef9f;
+      right: 180px;
+      top: 40px;
+      opacity: .45;
+    }
+
+    /* kanan bawah */
+    .glow-4 {
+      width: 420px;
+      height: 420px;
+      background: #57e58a;
+      right: -120px;
+      bottom: -120px;
+      opacity: .75;
+    }
+
+    /* Background blur kiri */
+    body::before {
+      content: '';
+      position: absolute;
+      width: 450px;
+      height: 450px;
+      background: #72f59c;
+      border-radius: 50%;
+      filter: blur(170px);
+      left: -120px;
+      top: 120px;
+      opacity: .55;
+    }
+
+    /* Background blur kanan */
+    body::after {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: #65e98e;
+      border-radius: 50%;
+      filter: blur(170px);
+      right: -120px;
+      bottom: -100px;
+      opacity: .55;
+    }
+
+    .container {
+      position: relative;
+      z-index: 10;
+    }
+
+    .card {
+      width: 390px;
+      padding: 38px 40px;
+      background: #f4f4f4;
+      border-radius: 28px;
+      box-shadow:
+        0 35px 120px rgba(0, 0, 0, 0.15),
+        0 35px 120px rgba(0, 0, 0, .04);
+    }
+
+    .logo-box {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto;
+      background: #2dbb64;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, .15);
+    }
+
+    .logo-box svg {
+      width: 38px;
+      height: 38px;
+      stroke: white;
+      stroke-width: 2;
+      fill: none;
+    }
+
+    .title {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 26px;
+      font-weight: 800;
+      color: #2dbb64;
+    }
+
+    .subtitle {
+      text-align: center;
+      margin-top: 8px;
+      color: #5d6674;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .form-group {
+      margin-top: 28px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 15px;
+      font-weight: 600;
+      color: #495467;
+      margin-bottom: 10px;
+    }
+
+    .form-control {
+      width: 100%;
+      height: 50px;
+      border: 1px solid #d7dbe0;
+      border-radius: 15px;
+      padding: 0 16px;
+      font-size: 15px;
+      background: #f8f8f8;
+      outline: none;
+      transition: .2s;
+    }
+
+    .form-control::placeholder {
+      color: #8c8c8c;
+    }
+
+    .form-control:focus {
+      border-color: #2dbb64;
+      box-shadow: 0 0 0 3px rgba(45, 187, 100, .15);
+    }
+
+    .password-group {
+      margin-top: 24px;
+    }
+
+    .login-btn {
+      width: 100%;
+      height: 52px;
+      margin-top: 25px;
+      border: none;
+      border-radius: 14px;
+      background: #2dbb64;
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .login-btn:hover {
+      background: #27a859;
+    }
+
+    .demo-box {
+      margin-top: 28px;
+      background: #edf7f0;
+      border: 1px solid #d8ecdd;
+      border-radius: 16px;
+      padding: 16px 18px;
+    }
+
+    .demo-title {
+      font-size: 14px;
+      color: #566170;
+      margin-bottom: 10px;
+    }
+
+    .demo-box p {
+      font-size: 14px;
+      color: #566170;
+      margin-bottom: 6px;
+    }
+
+    .demo-box strong {
+      color: #425064;
+    }
