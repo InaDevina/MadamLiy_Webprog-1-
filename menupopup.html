@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Madam Liy Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Inter', sans-serif;
+    }
+
+    @keyframes popup {
+
+        from {
+            opacity: 0;
+            transform: translateY(20px) scale(.95);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    .modal-actions {
+
+        display: flex;
+
+        gap: 12px;
+
+        margin-top: 20px;
+    }
+
+    .btn-save {
+
+        flex: 1;
+
+        height: 50px;
+
+        border: none;
+
+        border-radius: 14px;
+
+        background: #2dc86f;
+
+        color: white;
+
+        font-size: 16px;
+
+        cursor: pointer;
+    }
+
+    .btn-cancel {
+
+        width: 90px;
+
+        border: none;
+
+        border-radius: 14px;
+
+        background: #f3f4f6;
+
+        color: #374151;
+
+        cursor: pointer;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+
+        width: 100%;
+
+        border: 1px solid #d1d5db;
+
+        border-radius: 12px;
+
+        padding: 14px 16px;
+
+        font-size: 15px;
+
+        outline: none;
+    }
+
+    .form-group textarea {
+
+        resize: none;
+    }
+
+    .form-row {
+
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 16px;
+    }
+
+    .form-group {
+
+        margin-bottom: 18px;
+    }
+
+    .form-group label {
+
+        display: block;
+
+        margin-bottom: 8px;
+
+        font-weight: 500;
+
+        color: #374151;
+    }
+
+    .modal h2 {
+
+        font-size: 24px;
+
+        font-weight: 700;
+
+        color: #111827;
+
+        margin-bottom: 24px;
+    }
+
+    .modal {
+
+        width: 670px;
+
+        background: white;
+
+        border-radius: 20px;
+
+        padding: 32px;
+
+        box-shadow:
+            0 20px 50px rgba(0, 0, 0, .18);
+
+        animation: popup .25s ease;
+    }
+
+    .modal-overlay {
+
+        position: fixed;
+
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 100%;
+
+        background: rgba(0, 0, 0, .35);
+
+        backdrop-filter: blur(3px);
+
+        display: none;
+
+        justify-content: center;
+        align-items: center;
+
+        z-index: 9999;
+    }
+</style>
+
+<body>
+
+    <!-- Modal -->
+    <div id="menuModal" class="modal-overlay">
+
+        <div class="modal">
+
+            <h2>Tambah Menu Baru</h2>
+
+            <form id="menuForm">
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>Nama Menu</label>
+
+                        <input type="text" placeholder="Contoh: Nasi Goreng">
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>Kategori</label>
+
+                        <select>
+
+                            <option>Makanan</option>
+                            <option>Minuman</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Harga (Rp)</label>
+
+                    <input type="number" placeholder="25000">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Deskripsi</label>
+
+                    <textarea rows="5" placeholder="Deskripsi menu..."></textarea>
+
+                </div>
+
+                <div class="modal-actions">
+
+                    <button type="submit" class="btn-save">
+
+                        Tambah Menu
+
+                    </button>
+
+                    <button type="button" class="btn-cancel" onclick="closeModal()">
+
+                        Batal
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        const modal =
+            document.getElementById("menuModal");
+
+        function openModal() {
+
+            modal.style.display = "flex";
+
+        }
+
+        function closeModal() {
+
+            modal.style.display = "none";
+
+        }
+
+        modal.addEventListener("click", function (e) {
+
+            if (e.target === modal) {
+
+                closeModal();
+
+            }
+
+        });
+
+        document
+            .getElementById("menuForm")
+            .addEventListener("submit", function (e) {
+
+                e.preventDefault();
+
+                alert("Menu berhasil ditambahkan");
+
+                closeModal();
+
+            });
+
+    </script>
+
+</body>
