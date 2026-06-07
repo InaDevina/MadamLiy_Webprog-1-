@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>POS Cashier</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <script>
+    tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] } } } }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      padding: 12px;
+      margin-bottom: 10px;
+
+      border-radius: 12px;
+
+      background: #f8fafc;
+    }
+
+    .qty {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .qty button {
+      width: 30px;
+      height: 30px;
+
+      border: none;
+      border-radius: 8px;
+
+      background: #31c96c;
+      color: white;
+
+      cursor: pointer;
+    }
+
+    #checkout-section {
+      display: all;
+    }
+
+    #cart-items {
+      min-height: 0;
+    }
+
+    #cart-items::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    #cart-items::-webkit-scrollbar-thumb {
+      background: #d1d5db;
+      border-radius: 999px;
+    }
+  </style>
+</head>
+
+<body class="bg-[#eef6f1] overflow-hidden font-sans">
+
+  <div
+    class="absolute rounded-full filter blur-[120px] pointer-events-none w-[350px] h-[350px] bg-[#74ef9f] right-[180px] top-[40px] opacity-45">
+  </div>
+
+  <div class="flex min-h-screen relative z-10">
+
+    <!-- SIDEBAR -->
+    <aside class="w-[260px] h-screen fixed left-0 top-0 bg-white border-r border-[#e5e7eb] flex flex-col z-50">
+
+      <div class="p-6 border-b border-[#e5e7eb] flex items-center gap-3">
+        <div class="w-[46px] h-[46px] rounded-[14px] bg-[#2dc86f] text-white flex items-center justify-center">
+          <i class="fas fa-utensils"></i>
+        </div>
+        <div>
+          <h2 class="text-[18px] font-semibold">Madam Liy</h2>
+          <span class="text-[#6b7280] text-sm">UC Walk</span>
+        </div>
+      </div>
+
+      <div class="p-4">
+        <a href="transactions.html"
+          class="flex items-center gap-3 py-3 px-4 rounded-[14px] bg-[#31c96c] text-white shadow-[0_8px_20px_rgba(49,201,108,0.35)]">
+          <i class="fas fa-cart-shopping"></i>
+          Sistem Kasir
+        </a>
+        <a href="list_order.html"
+          class="flex items-center gap-3 py-3 px-4 rounded-[14px] text-[#374151] mt-2 hover:bg-[#f3f4f6]">
+          <i class="fas fa-file-lines"></i>
+          List Order
+        </a>
+      </div>
+
+      <div class="mt-auto p-4">
+        <div class="bg-[#f3f4f6] p-4 rounded-[14px] mb-4">
+          <small class="text-[#6b7280]">Logged in as</small>
+          <h4 class="mt-1">ina</h4>
+          <div class="text-[#27ae60] text-sm">Role: Cashier</div>
+        </div>
+        <button class="w-full h-[46px] rounded-[14px] bg-[#ff1f1f] text-white"> <i class="fas fa-sign-out-alt"></i>
+          Logout</button>
+      </div>
+
+    </aside>
+
+    <!-- MAIN -->
+    <main class="ml-[260px] w-[calc(100%-260px)] h-screen p-[34px_28px]">
+
+      <h1 class="text-[30px] font-bold text-[#111827]">Point of Sale (Cashier)</h1>
+      <div class="text-[#6b7280] mt-1 mb-7">Process orders and manage transactions</div>
+
+      <div class="flex gap-6 h-[calc(100vh-120px)]">
+
+        <div class="flex-1 overflow-y-auto hide-scrollbar pr-2">
+
+          <div class="text-[18px] font-bold mb-5 text-[#111827]">🍱 Makanan (Food)</div>
+
+          <div class="grid grid-cols-3 gap-4 mb-7">
+            <div class="card bg-white border border-[#e5e7eb] rounded-[16px] p-4 shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
+              <img src="ayam-geprek.jpg" class="w-full h-[120px] object-cover rounded-[12px]">
+              <h4 class="product-name mt-3">Ayam Geprek</h4>
+              <div class="price text-[#27ae60] font-bold mt-1" data-price="25000">Rp 25.000</div>
+              <button class="add-btn w-full h-[40px] mt-3 rounded-[10px] bg-[#31c96c] text-white">+ Add</button>
+            </div>
+            <div class="card bg-white border border-[#e5e7eb] rounded-[16px] p-4 shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
+              <img src="ayam-goreng.jpg" class="w-full h-[120px] object-cover rounded-[12px]">
+              <h4 class="product-name mt-3">Ayam Goreng</h4>
+              <div class="price text-[#27ae60] font-bold mt-1" data-price="22000">Rp 22,000</div>
+              <button class="add-btn w-full h-[40px] mt-3 rounded-[10px] bg-[#31c96c] text-white">+ Add</button>
+            </div>
+            <div class="card bg-white border border-[#e5e7eb] rounded-[16px] p-4 shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
+              <img src="bebek.jpg" class="w-full h-[120px] object-cover rounded-[12px]">
+              <h4 class="product-name mt-3">Bebek Goreng</h4>
+              <div class="price text-[#27ae60] font-bold mt-1" data-price="35000">Rp 35,000</div>
+              <button class="add-btn w-full h-[40px] mt-3 rounded-[10px] bg-[#31c96c] text-white">+ Add</button>
+            </div>
+          </div>
+
+          <div class="text-[18px] font-bold mb-5 text-[#111827]">🥤 Minuman (Drinks)</div>
+
+          <div class="grid grid-cols-3 gap-4">
+            <div class="card bg-white border border-[#e5e7eb] rounded-[16px] p-4 shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
+              <img src="teh-botol.jpg" class="w-full h-[120px] object-cover rounded-[12px]">
+              <h4 class="product-name mt-3">Teh Botol</h4>
+              <div class="price text-[#27ae60] font-bold mt-1" data-price="5000">Rp 5,000</div>
+              <button class="add-btn w-full h-[40px] mt-3 rounded-[10px] bg-[#31c96c] text-white">+ Add</button>
+            </div>
+            <div class="card bg-white border border-[#e5e7eb] rounded-[16px] p-4 shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
+              <img src="es-teh.jpg" class="w-full h-[120px] object-cover rounded-[12px]">
+              <h4 class="product-name mt-3">Es Teh Manis</h4>
+              <div class="price text-[#27ae60] font-bold mt-1" data-price="8000">Rp 8,000</div>
+              <button class="add-btn w-full h-[40px] mt-3 rounded-[10px] bg-[#31c96c] text-white">+ Add</button>
+            </div>
+            <div class="card bg-white border border-[#e5e7eb] rounded-[16px] p-4 shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
+              <img src="air.jpg" class="w-full h-[120px] object-cover rounded-[12px]">
+              <h4 class="product-name mt-3">Air Mineral</h4>
+              <div class="price text-[#27ae60] font-bold mt-1" data-price="3000">Rp 3,000</div>
+              <button class="add-btn w-full h-[40px] mt-3 rounded-[10px] bg-[#31c96c] text-white">+ Add</button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ORDER -->
+        <div class="w-[380px] relative">
+
+          <div id="cart-card" class="bg-white rounded-[16px]
+        border border-[#e5e7eb]
+        shadow-[0_4px_20px_rgba(0,0,0,0.08)]
+        transition-all duration-300
+        h-[200px]
+        flex flex-col">
+
+            <!-- HEADER -->
+            <div class="p-5 text-[18px] font-bold border-b border-[#e5e7eb]">
+              Current Order
+            </div>
+
+            <!-- EMPTY STATE -->
+            <div id="empty-cart" class="flex-1 flex flex-col
+            items-center justify-center
+            text-center text-[#9ca3af]
+            px-8">
+
+              <i class="fa-solid fa-cart-shopping
+                text-[42px]
+                mb-3
+                text-[#d1d5db]">
+              </i>
+
+              <h3 class="text-[#374151] font-semibold">
+                No items yet
+              </h3>
+
+              <p class="text-[13px] mt-1">
+                Add menu items to start an order
+              </p>
+
+            </div>
+
+            <!-- ITEM LIST -->
+            <div id="cart-items" class="max-h-[300px] overflow-y-auto px-5 py-4 hidden">
+            </div>
+          </div>
+
+          <!-- SUMMARY -->
+          <div id="checkout-section" class="hidden border-collapse rounded-[16px] p-4 bg-white">
+
+            <div class="space-y-2">
+
+              <div class="flex justify-between">
+                <span>Subtotal</span>
+                <span id="subtotal">Rp 0</span>
+              </div>
+
+              <div class="flex justify-between">
+                <span>Tax (10%)</span>
+                <span id="tax">Rp 0</span>
+              </div>
+
+              <div class="flex justify-between items-center">
+                <strong>Total</strong>
+                <div id="total" class="text-[24px]
+                        font-bold
+                        text-[#27ae60]">
+
+                  Rp 0
+
+                </div>
+              </div>
+
+            </div>
+
+            <div class="grid grid-cols-3 gap-2 mt-4">
+
+              <button class="h-[45px] rounded-[10px] bg-[#f3f4f6]">
+                Cash
+              </button>
+
+              <button class="h-[45px] rounded-[10px] bg-[#f3f4f6]">
+                Transfer
+              </button>
+
+              <button class="h-[45px] rounded-[10px] bg-[#f3f4f6]">
+                QRIS
+              </button>
+
+            </div>
+
+            <button class="process
+                w-full h-[48px]
+                mt-4 rounded-[12px]
+                bg-[#31c96c]
+                text-white">
+
+              Process Payment
+
+            </button>
+
+            <button class="clear
+                w-full mt-3
+                text-[#6b7280]">
+
+              Clear Order
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+  </div>
+
+  </main>
+
+  </div>
+  <script src="/script/transactions.js"></script>
+</body>
+
+</html>
