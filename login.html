@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Madam Liy Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] } } } }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen flex items-center justify-center overflow-hidden bg-[#dff3e6] relative font-sans">
+
+  <div class="absolute rounded-full filter blur-[120px] pointer-events-none w-[300px] h-[300px] bg-[#7df0a7] -top-[80px] -left-[80px] opacity-70"></div>
+  <div class="absolute rounded-full filter blur-[120px] pointer-events-none w-[250px] h-[250px] bg-[#8ef6b5] -left-[100px] top-[280px] opacity-50"></div>
+  <div class="absolute rounded-full filter blur-[120px] pointer-events-none w-[350px] h-[350px] bg-[#74ef9f] right-[180px] top-[40px] opacity-45"></div>
+  <div class="absolute rounded-full filter blur-[120px] pointer-events-none w-[420px] h-[420px] bg-[#57e58a] right-[-120px] bottom-[-120px] opacity-75"></div>
+
+  <div class="relative z-10">
+    <div class="w-[390px] p-[38px] bg-[#f4f4f4] rounded-[28px] shadow-[0_35px_120px_rgba(0,0,0,0.15),0_35px_120px_rgba(0,0,0,0.04)]">
+      <div class="w-[72px] h-[72px] mx-auto bg-[#2dbb64] rounded-[16px] flex items-center justify-center shadow-[0_10px_20px_rgba(0,0,0,0.15)]">
+        <svg viewBox="0 0 24 24" class="w-[38px] h-[38px] stroke-white stroke-2 fill-none">
+          <path d="M7 18h10" />
+          <path d="M6 18v-3" />
+          <path d="M18 18v-3" />
+          <path d="M7 15h10" />
+          <path d="M7 15c-2 0-3.5-1.5-3.5-3.5S5 8 7 8c.3-2.3 2-4 5-4s4.7 1.7 5 4c2 0 3.5 1.5 3.5 3.5S19 15 17 15" />
+        </svg>
+      </div>
+
+      <h1 class="text-center mt-4 text-[26px] font-extrabold text-[#2dbb64]">Madam Liy</h1>
+      <p class="text-center mt-2 text-[#5d6674] text-[14px] font-medium">Restaurant Management System</p>
+
+      <div class="mt-7">
+        <label class="block text-[15px] font-semibold text-[#495467] mb-2.5">Username</label>
+        <input type="text" id="username" placeholder="Masukkan username" class="w-full h-[50px] border border-[#d7dbe0] rounded-[15px] px-4 text-[15px] bg-[#f8f8f8] outline-none transition duration-200 focus:border-[#2dbb64] focus:shadow-[0_0_0_3px_rgba(45,187,100,0.15)]">
+      </div>
+
+      <div class="mt-6">
+        <label class="block text-[15px] font-semibold text-[#495467] mb-2.5">Password</label>
+        <input type="password" id="password" placeholder="Masukkan password" class="w-full h-[50px] border border-[#d7dbe0] rounded-[15px] px-4 text-[15px] bg-[#f8f8f8] outline-none transition duration-200 focus:border-[#2dbb64] focus:shadow-[0_0_0_3px_rgba(45,187,100,0.15)]">
+      </div>
+
+      <button class="w-full h-[52px] mt-6 bg-[#2dbb64] hover:bg-[#27a859] rounded-[14px] text-white font-bold text-[16px]">Login</button>
+
+      <div class="mt-7 bg-[#edf7f0] border border-[#d8ecdd] rounded-[16px] p-4">
+        <div class="text-[14px] text-[#566170] mb-2">Demo Credentials:</div>
+        <p class="text-[14px] text-[#566170] mb-1.5"><strong class="text-[#425064]">Admin:</strong> admin / admin123</p>
+        <p class="text-[14px] text-[#566170]"><strong class="text-[#425064]">Cashier:</strong> cashier / cashier123</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="/script/login.js"></script>
+</body>
+
+</html>
