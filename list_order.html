@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>List Order</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <script>
+    tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] } } } }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#eef6f1] overflow-hidden font-sans">
+
+  <div class="absolute rounded-full filter blur-[120px] pointer-events-none w-[350px] h-[350px] bg-[#74ef9f] right-[180px] top-[40px] opacity-45"></div>
+
+  <div class="flex">
+
+    <!-- SIDEBAR -->
+    <aside class="w-[260px] h-screen fixed left-0 top-0 bg-white border-r border-[#e5e7eb] flex flex-col z-50">
+
+        <div class="p-6 border-b border-[#e5e7eb] flex items-center gap-3">
+          <div class="w-[46px] h-[46px] rounded-[14px] bg-[#2dc86f] text-white flex items-center justify-center">
+            <i class="fas fa-utensils"></i>
+          </div>
+          <div>
+            <h2 class="text-[18px] font-semibold">Madam Liy</h2>
+            <span class="text-[#6b7280] text-sm">UC Walk</span>
+          </div>
+        </div>
+
+        <div class="p-4">
+          <a href="transactions.html" class="flex items-center gap-3 py-3 px-4 rounded-[14px] text-[#374151] mb-2 hover:bg-[#f3f4f6]">
+            <i class="fas fa-cart-shopping"></i>
+            Sistem Kasir
+          </a>
+          <a href="list_order.html" class="flex items-center gap-3 py-3 px-4 rounded-[14px] bg-[#31c96c] text-white shadow-[0_8px_20px_rgba(49,201,108,0.35)]">
+            <i class="fas fa-file-lines"></i>
+            List Order
+          </a>
+        </div>
+
+        <div class="mt-auto p-4">
+          <div class="bg-[#f3f4f6] p-4 rounded-[14px] mb-4">
+            <small class="text-[#6b7280]">Logged in as</small>
+            <h4 class="mt-1">ina</h4>
+            <div class="text-[#27ae60] text-sm">Role: Cashier</div>
+          </div>
+          <button class="w-full h-[46px] rounded-[14px] bg-[#ff1f1f] text-white"> <i class="fas fa-sign-out-alt"></i> Logout</button>
+        </div>
+
+      </aside>
+
+      <!-- MAIN -->
+      <main class="ml-[260px] flex-1 p-[36px_32px]" style="width:calc(100% - 260px)">
+
+        <h1 class="text-[52px] font-extrabold text-[#111827]">List Order</h1>
+
+        <div class="mt-2 mb-8 text-[18px] text-[#6b7280]">View and manage all transactions</div>
+
+        <div class="relative bg-white rounded-[20px] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.08)] border border-[#e5e7eb]">
+          <div class="absolute -right-16 top-[-80px] w-[420px] h-[420px] rounded-full bg-[#74ef9f] opacity-30 blur-[100px] -z-10"></div>
+
+          <div class="flex items-center justify-between p-6 relative z-10">
+            <h2 class="text-[18px] font-bold text-[#111827]">Daftar Transaksi</h2>
+            <div class="flex gap-3">
+              <input id="searchInput" type="text" placeholder="Cari transaksi..." class="h-[42px] px-4 border border-[#e5e7eb] rounded-[12px]" />
+              <select id="statusFilter" class="h-[42px] px-4 border border-[#e5e7eb] rounded-[12px]">
+                <option value="">Semua Status</option>
+                <option value="Process">Process</option>
+                <option value="Completed">Completed</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full border-collapse">
+              <thead class="bg-[#f3f4f6]">
+                <tr>
+                  <th class="p-4 text-left text-[12px] tracking-wider text-[#6b7280]">ID TRANSAKSI</th>
+                  <th class="p-4 text-left text-[12px] tracking-wider text-[#6b7280]">TANGGAL & WAKTU</th>
+                  <th class="p-4 text-left text-[12px] tracking-wider text-[#6b7280]">ITEMS</th>
+                  <th class="p-4 text-left text-[12px] tracking-wider text-[#6b7280]">KASIR</th>
+                  <th class="p-4 text-left text-[12px] tracking-wider text-[#6b7280]">PEMBAYARAN</th>
+                  <th class="p-4 text-left text-[12px] tracking-wider text-[#6b7280]">TOTAL</th>
+                  <th class="p-4 text-left text-[12px] tracking-wider text-[#6b7280]">STATUS</th>
+                  <th class="p-4 text-left text-[12px] tracking-wider text-[#6b7280]">ACTIONS</th>
+                </tr>
+              </thead>
+              <tbody id="transactionTable"></tbody>
+            </table>
+          </div>
+
+        </div>
+
+      </main>
+
+    </div>
+
+</body>
