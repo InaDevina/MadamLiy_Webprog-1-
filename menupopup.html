@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Madam Liy Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] } } } }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+    <style>
+    @keyframes popup { from { opacity: 0; transform: translateY(20px) scale(.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    .animate-popup { animation: popup .25s ease; }
+  </style>
+
+<body>
+
+    <!-- Modal -->
+    <div id="menuModal" class="fixed inset-0 bg-[rgba(0,0,0,0.35)] backdrop-blur-sm hidden justify-center items-center z-[9999]">
+
+        <div class="w-[670px] bg-white rounded-[20px] p-8 shadow-[0_20px_50px_rgba(0,0,0,0.18)] animate-popup">
+
+            <h2 class="text-[24px] font-bold text-[#111827] mb-6">Tambah Menu Baru</h2>
+
+            <form id="menuForm">
+
+                <div class="grid grid-cols-2 gap-4">
+
+                    <div class="mb-4">
+                        <label class="block mb-2 font-medium text-[#374151]">Nama Menu</label>
+                        <input type="text" placeholder="Contoh: Nasi Goreng" class="w-full border border-[#d1d5db] rounded-[12px] px-4 py-3 text-sm outline-none">
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block mb-2 font-medium text-[#374151]">Kategori</label>
+                        <select class="w-full border border-[#d1d5db] rounded-[12px] px-4 py-3 text-sm">
+                            <option>Makanan</option>
+                            <option>Minuman</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="mb-4">
+                    <label class="block mb-2 font-medium text-[#374151]">Harga (Rp)</label>
+                    <input type="number" placeholder="25000" class="w-full border border-[#d1d5db] rounded-[12px] px-4 py-3 text-sm outline-none">
+                </div>
+
+                <div class="mb-4">
+                    <label class="block mb-2 font-medium text-[#374151]">Deskripsi</label>
+                    <textarea rows="5" placeholder="Deskripsi menu..." class="w-full border border-[#d1d5db] rounded-[12px] px-4 py-3 text-sm resize-none"></textarea>
+                </div>
+
+                <div class="flex gap-3 mt-5">
+                    <button type="submit" class="flex-1 h-[50px] rounded-[14px] bg-[#2dc86f] text-white text-[16px]">Tambah Menu</button>
+                    <button type="button" class="w-[90px] rounded-[14px] bg-[#f3f4f6] text-[#374151]" onclick="closeModal()">Batal</button>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        const modal =
+            document.getElementById("menuModal");
+
+        function openModal() {
+
+            modal.style.display = "flex";
+
+        }
+
+        function closeModal() {
+
+            modal.style.display = "none";
+
+        }
+
+        modal.addEventListener("click", function (e) {
+
+            if (e.target === modal) {
+
+                closeModal();
+
+            }
+
+        });
+
+        document
+            .getElementById("menuForm")
+            .addEventListener("submit", function (e) {
+
+                e.preventDefault();
+
+                alert("Menu berhasil ditambahkan");
+
+                closeModal();
+
+            });
+
+    </script>
+
+</body>
